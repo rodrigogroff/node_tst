@@ -34,7 +34,6 @@ router.put("/users_updateEmail", async (req, res) => {
     res.json({ message: "Email updated successfully" });
 
   } catch (err) {
-    console.error("❌ Error updating email:", err.message);
     res.status(500).json({ error: err.message });
   }
 });
