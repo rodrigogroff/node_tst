@@ -1,0 +1,23 @@
+{
+  "name": "backend-exemplo",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "oracledb": "^6.5.1",
+    "uuid": "^9.0.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "babel . --out-dir dist --ignore node_modules",
+    "tests": "node tests.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5"
+  }
+}

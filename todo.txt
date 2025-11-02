@@ -1,0 +1,27 @@
+
+----------------------------------
+Estrutura
+----------------------------------
+
+-mongodb com dados                                              OK
+
+-criação de uma dist                                            OK
+    -npm run build (usando babel)                               OK
+    -verifica sintaxe e se tudo está 'compilando'               OK
+
+-middleware em rotas publicas e privadas                        OK
+    -arquivo "aut.js" definindo tudo                            OK              
+
+-isolamento de todas as rotas em um arquivo só (routes)         OK
+
+-testes usando chamadas com dados reais                         OK
+    -cada entidade terá um arquivo próprio de testes            OK
+    -npm run tests                                              OK
+
+-isolamento de cada tipo de get, post em um arquivo             OK
+    -cada entidade em um diretorio                              OK
+    -cada método (get, post, put, delete) em um arquivo         OK
+
+-auth
+    -método post com body { cliente_id (guid), email }
+

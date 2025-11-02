@@ -1,0 +1,14 @@
+[
+    {
+        "id": "4f4512f6-c9c3-461d-9e89-22ef8eae69d4",
+        "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d",
+        "nome": "Rodrigo Groff",
+        "email": "rodrigo.groff@gmail.com"
+    },
+    {
+        "id": "4f4512f6-c9c3-461d-9e89-22ef8eae69d5",
+        "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d",
+        "nome": "Gustavo Meirelles",
+        "email": "gustavo.meirelles@gmail.com"
+    }
+]
