@@ -1,0 +1,26 @@
+[
+    {
+        "id": "e06bb92b-2fc3-4444-8aea-e0daf3513d57",
+        "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d",
+        "usuario_id": "4f4512f6-c9c3-461d-9e89-22ef8eae69d4",
+        "tipoDocumento": "1",
+        "usuario_cpf": "123456789123"
+    },
+    {
+        "id": "e06bb92b-2fc3-4444-8aea-e0daf3513d58",
+        "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d",
+        "usuario_id": "4f4512f6-c9c3-461d-9e89-22ef8eae69d4",
+        "tipoDocumento": "2",
+        "usuario_cnpj": "001123456789123"
+    },
+    {
+        "id": "e06bb92b-2fc3-4444-8aea-e0daf3513d59",
+        "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d",
+        "usuario_id": "4f4512f6-c9c3-461d-9e89-22ef8eae69d4",
+        "tipoDocumento": "3",
+        "usuario_local_rua": "Rua de teste",
+        "usuario_local_numero": "456",
+        "usuario_local_compl": "201",
+        "usuario_local_cep": "91040610"
+    }
+]

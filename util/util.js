@@ -12,3 +12,4 @@ export function checkEmailSyntax(email) {
       return false    
     return true
 }
+
