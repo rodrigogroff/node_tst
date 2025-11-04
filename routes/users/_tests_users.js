@@ -1,10 +1,18 @@
 import axios from "axios";
 
+/*
+if (error.response) {
+      console.log("Erro na resposta:", error.response.status, error.response.data);
+    } else {
+      console.log("Erro na requisição:", error.message);
+    }
+*/
+
 async function test_name_unauthorized() {
   try {
     const response = await axios.get("http://localhost:3000/users", {
       headers: {
-        authorization: "666666",
+        authorization: "FAILED_TOKEN_STRING_HERE",
         cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9d"
       }
     })
@@ -14,11 +22,12 @@ async function test_name_unauthorized() {
   }
 }
 
-async function test_name_unauthorized_invalid_cliente_id() {
+async function test_name_authorized_invalid_cliente_id() {
   try {
+    const response_auth = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "rodrigo.groff@gmail.com" });
     const response = await axios.get("http://localhost:3000/users", {
       headers: {
-        authorization: "123456",
+        authorization: response_auth.data.token,
         cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9a"
       }
     })
@@ -30,9 +39,10 @@ async function test_name_unauthorized_invalid_cliente_id() {
 
 async function test_name_empty() {
   try {
+    const response_auth = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "rodrigo.groff@gmail.com" });
     const response = await axios.get("http://localhost:3000/users", {
       headers: {
-        authorization: "123456",
+        authorization: response_auth.data.token,
         cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9d"
       }
     });
@@ -44,9 +54,10 @@ async function test_name_empty() {
 
 async function test_name_sent() {
   try {
+    const response_auth = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "rodrigo.groff@gmail.com" });
     const response = await axios.get("http://localhost:3000/users?name=rodrigo", {
       headers: {
-        authorization: "123456",
+        authorization: response_auth.data.token,
         cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9d"
       }
     })
@@ -60,8 +71,10 @@ async function test_update_email() {
 
   const baseURL = "http://localhost:3000";
 
+  const response_auth = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "rodrigo.groff@gmail.com" });
+
   const headers = {
-    authorization: "123456",
+    authorization: response_auth.data.token,
     cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9d"
   };
 
@@ -71,7 +84,7 @@ async function test_update_email() {
 
   const updateEmail = async (email) => {
     return axios.put(`${baseURL}/users_updateEmail`, { usuario_id, email }, { headers });
-  };
+  }
 
   try {
   
@@ -95,6 +108,8 @@ async function test_update_email() {
 async function test_update_documento_cpf_invalid() {
 
   try {
+    const response_auth = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "rodrigo.groff@gmail.com" });
+
     await axios.put("http://localhost:3000/users_updateDocumento", 
       {
         usuario_id: "4f4512f6-c9c3-461d-9e89-22ef8eae69d4", 
@@ -103,7 +118,7 @@ async function test_update_documento_cpf_invalid() {
       },
       {
         headers: {
-          authorization: "123456",
+          authorization: response_auth.data.token,
           cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9d"
         }
       })
@@ -116,6 +131,8 @@ async function test_update_documento_cpf_invalid() {
 async function test_update_documento_cpf_valid() {
 
   try {
+    const response_auth = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "rodrigo.groff@gmail.com" });
+
     const response = await axios.put("http://localhost:3000/users_updateDocumento", 
       {
         usuario_id: "4f4512f6-c9c3-461d-9e89-22ef8eae69d4", 
@@ -124,13 +141,13 @@ async function test_update_documento_cpf_valid() {
       },
       {
         headers: {
-          authorization: "123456",
+          authorization: response_auth.data.token,
           cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9d"
         }
       })
     const response_get = await axios.get("http://localhost:3000/users?name=rodrigo", {
       headers: {
-        authorization: "123456",
+        authorization: response_auth.data.token,
         cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9d"
       }
     })
@@ -149,6 +166,7 @@ async function test_update_documento_cpf_valid() {
 async function test_update_documento_cnpj_invalid() {
 
   try {
+    const response_auth = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "rodrigo.groff@gmail.com" });
     const response = await axios.put("http://localhost:3000/users_updateDocumento", 
       {
         usuario_id: "4f4512f6-c9c3-461d-9e89-22ef8eae69d4", 
@@ -157,7 +175,7 @@ async function test_update_documento_cnpj_invalid() {
       },
       {
         headers: {
-          authorization: "123456",
+          authorization: response_auth.data.token,
           cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9d"
         }
       })    
@@ -170,6 +188,7 @@ async function test_update_documento_cnpj_invalid() {
 async function test_update_documento_cnpj_valid() {
 
   try {
+    const response_auth = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "rodrigo.groff@gmail.com" });
     const response = await axios.put("http://localhost:3000/users_updateDocumento", 
       {
         usuario_id: "4f4512f6-c9c3-461d-9e89-22ef8eae69d4", 
@@ -178,13 +197,13 @@ async function test_update_documento_cnpj_valid() {
       },
       {
         headers: {
-          authorization: "123456",
+          authorization: response_auth.data.token,
           cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9d"
         }
       })    
     const response_get = await axios.get("http://localhost:3000/users?name=rodrigo", {
       headers: {
-        authorization: "123456",
+        authorization: response_auth.data.token,
         cliente_id: "7407440e-180c-4e1f-ac22-eaba916b3c9d"
       }
     })
@@ -202,7 +221,7 @@ async function test_update_documento_cnpj_valid() {
 
 export async function test_users() {
   if (!await test_name_unauthorized()) { console.log('testtest_name_unauthorized_all FAILED'); return; }
-  if (!await test_name_unauthorized_invalid_cliente_id()) { console.log('test_name_unauthorized_invalid_cliente_id FAILED'); return; }
+  if (!await test_name_authorized_invalid_cliente_id()) { console.log('test_name_unauthorized_invalid_cliente_id FAILED'); return; }
   if (!await test_name_empty()) { console.log('test_name_empty FAILED'); return; }
   if (!await test_name_sent()) { console.log('test_name_sent FAILED'); return; }
   if (!await test_update_email()) { console.log('test_update_email FAILED'); return; }

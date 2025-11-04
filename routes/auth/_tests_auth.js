@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function test_all_empty() {
   try {
-    const response = await axios.post("http://localhost:3000/auth", { "cliente_id": "", "email" : "" });
+    const response = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "", "email" : "" });
     return false    
   } catch (error) {
     return true
@@ -11,7 +11,7 @@ async function test_all_empty() {
 
 async function test_client_id_invalid() {
   try {
-    const response = await axios.post("http://localhost:3000/auth", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c90", "email" : "teste@teste.com" });
+    const response = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c90", "email" : "teste@teste.com" });
     return false;
   } catch (error) {
     return true
@@ -20,7 +20,7 @@ async function test_client_id_invalid() {
 
 async function test_client_id_valid_invalid_email() {
   try {
-    const response = await axios.post("http://localhost:3000/auth", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "teste@teste.com" });
+    const response = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "teste@teste.com" });
     return false;
   } catch (error) {
     return true
@@ -29,9 +29,18 @@ async function test_client_id_valid_invalid_email() {
 
 async function test_client_id_valid_valid_email() {
   try {
-    const response = await axios.post("http://localhost:3000/auth", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "rodrigo.groff@gmail.com" });
+    const response_auth = await axios.post("http://localhost:3000/authenticate", { "cliente_id": "7407440e-180c-4e1f-ac22-eaba916b3c9d", "email" : "rodrigo.groff@gmail.com" });
     return true    
   } catch (error) {
+
+
+    if (error.response) {
+      console.log("Erro na resposta:", error.response.status, error.response.data);
+    } else {
+      console.log("Erro na requisição:", error.message);
+    }
+    
+
     return false;
   }
 }

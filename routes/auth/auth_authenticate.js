@@ -1,10 +1,11 @@
+import jwt from "jsonwebtoken";
 import express from "express";
 import { checkGuid, checkEmailSyntax } from "../../util/util.js";
 import { getClienteById, getUsuarioByClienteIdEmail } from "../../db/mongo.js"
 
 const router = express.Router();
 
-router.post("/auth", async (req, res) => {
+router.post("/authenticate", async (req, res) => {
   try {
 
     const { cliente_id, email } = req.body;
@@ -31,8 +32,14 @@ router.post("/auth", async (req, res) => {
     
     if (!usuario)
       return res.status(404).json({ error: "invalid credentials" });
-    
-    res.json({ message: "OK" });
+
+    const token = jwt.sign(usuario, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+      issuer: process.env.JWT_ISSUER,
+      audience: process.env.JWT_AUDIENCE
+    })
+
+    res.json({ message: "OK", token: token  });
 
   } catch (err) {
     res.status(500).json({ error: err.message });

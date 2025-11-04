@@ -18,6 +18,7 @@ router.get("/users", async (req, res) => {
       return res.status(400).json({ error: "invalid credentials" });
 
     const cliente = await getClienteById(cliente_id);
+    
     if (!cliente)
       return res.status(404).json({ error: "invalid credentials" });
 
@@ -41,7 +42,6 @@ router.get("/users", async (req, res) => {
 
   } catch (err) {
     res.status(500).json({ error: err.message });
-    console.log(err.message)
   }
 });
 
