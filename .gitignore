@@ -344,4 +344,4 @@ inventory
 target/**
 
 **/coverage.opencover.xml
-.env
+
